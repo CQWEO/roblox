@@ -9,7 +9,7 @@ Esp.Enabled = false
 Esp.Tracers = false
 Esp.Boxes = false
 
-local Window = Library:CreateWindow("🧟🎃 Evade", Vector2.new(500, 300), Enum.KeyCode.RightShift)
+local Window = Library:CreateWindow(" You Hub | Evade ", Vector2.new(500, 300), Enum.KeyCode.RightShift)
 local Evade = Window:CreateTab("General")
 local AutoFarms = Window:CreateTab("Farms")
 local Gamee = Window:CreateTab("Game")
@@ -30,9 +30,9 @@ getgenv().Settings = {
     Downedplayeresp = false,
     AutoRespawn = false,
     TicketFarm = false,
-    Speed = 1450,
-    Jump = 3,
-    reviveTime = 3,
+    Speed = 1,
+    Jump = 1,
+    reviveTime = 1,
     DownedColor = Color3.fromRGB(255,0,0),
     PlayerColor = Color3.fromRGB(255,170,0),
 
@@ -51,29 +51,29 @@ getgenv().Settings = {
 }
 
 
-local WalkSpeed = EvadeSector:AddSlider("Speed", 1450, 1450, 12000, 100, function(Value)
+local WalkSpeed = EvadeSector:AddSlider("Walkspeed", 0, 1450, 12000, 100, function(Value)
     Settings.Speed = Value
 end)
 
 
-local JumpPower = EvadeSector:AddSlider("JumpPower", 3, 3, 20, 1, function(Value)
+local JumpPower = EvadeSector:AddSlider("Jumping", 0, 3, 20, 1, function(Value)
     Settings.Jump = Value
 end)
 
 --// because silder does not detect dotted values 
 
-World:AddButton('Full Bright', function()
-   	Game.Lighting.Brightness = 4
-	Game.Lighting.FogEnd = 100000
+World:AddButton('FullBright', function()
+   	Game.Lighting.Brightness = 3
+	Game.Lighting.FogEnd = 0
 	Game.Lighting.GlobalShadows = false
     Game.Lighting.ClockTime = 12
 end)
 
-World:AddToggle('No Camera Shake', false, function(State)
+World:AddToggle('No Shake Cam', false, function(State)
     Settings.NoCameraShake = State
 end)
 
-Gamesec:AddToggle('Fast Revive', false, function(State)
+Gamesec:AddToggle('Revive Fast', false, function(State)
     if State then
         workspace.Game.Settings:SetAttribute("ReviveTime", 2.2)
     else
@@ -81,7 +81,7 @@ Gamesec:AddToggle('Fast Revive', false, function(State)
     end
 end)
 
-EvadeSector:AddToggle('Auto Respawn', false, function(State)
+EvadeSector:AddToggle('Set Respawn', false, function(State)
     Settings.AutoRespawn = State
 end)
 
@@ -89,16 +89,8 @@ EvadeSector:AddButton('Respawn',function()
     game:GetService("ReplicatedStorage").Events.Respawn:FireServer()
 end)
 
---Farms:AddToggle('Ticket Farm', false, function(State)
---    Settings.TicketFarm = State
---end)
-
 Farms:AddToggle('Money Farm', false, function(State)
     Settings.moneyfarm = State
-end)
-
-Farms:AddToggle('Afk Farm', false, function(State)
-    Settings.afkfarm = State
 end)
 
 Visuals:AddToggle('Enable Esp', false, function(State)
@@ -113,7 +105,7 @@ end)
 --    Esp.TicketEsp = State
 --end)
 
-Visuals:AddToggle('Downed Player Esp', false, function(State)
+Visuals:AddToggle('Downed Esp', false, function(State)
     Settings.Downedplayeresp = State
 end)
 
@@ -133,17 +125,16 @@ Visuals:AddToggle('Distance', false, function(State)
     Esp.Distance = State
 end)
 
-Visuals:AddColorpicker("Player Color", Color3.fromRGB(255,170,0), function(Color)
+Visuals:AddColorpicker("Player Color Esp", Color3.fromRGB(255,170,0), function(Color)
     Settings.PlayerColor = Color
 end)
 
-Visuals:AddColorpicker("Downed Player Color", Color3.fromRGB(255,255,255), function(Color)
+Visuals:AddColorpicker("Downed Player Color Esp", Color3.fromRGB(255,170,0), function(Color)
     Settings.DownedColor = Color
 end)
 
-Credits:AddLabel("Developed By xCLY And batusd")
-Credits:AddLabel("UI Lib: Jans Lib")
-Credits:AddLabel("ESP Lib: Kiriot")
+Credits:AddLabel("Credits By Rechedmcvn")
+Credits:AddLabel("Credits By SEAKiNG EXECUTE")
 
 local TypeLabelC5 = FarmStats:AddLabel('Auto Farm Stats')
 local DurationLabelC5 = FarmStats:AddLabel('Duration: 0')
